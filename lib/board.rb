@@ -5,6 +5,7 @@ class Board
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    @counter = 0 
     @matrix = [
       [nil, nil, nil],
       [nil, nil, nil],
@@ -17,29 +18,19 @@ class Board
   end
   # [5, 2, 3, 1, 0]
 
-  @counter = 0 
 
   def turn_counter()
     if @counter.even?
-      turn_player = player1
+      return @player1
     else 
-      turn_player = player2
+      return @player2
     end
-    counter += 1
+    @counter += 1
   end 
 
   def get_coordinate(coordinate)
     if input_valid?(coordinate)
       return coordinate
-    end
-  end
-
-  private
-  def input_valid?(coordinate)
-    if coordinate < 0 && coordinate > 2 
-      return false
-    else 
-      return true
     end
   end
 
@@ -105,8 +96,17 @@ def win
     return false
   end
 end
-
-puts win
-
 end
 
+
+
+  private
+  def input_valid?(coordinate)
+    if coordinate < 0 && coordinate > 2 
+      return false
+    else 
+      return true
+    end
+  end
+
+  
