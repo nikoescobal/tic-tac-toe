@@ -1,6 +1,8 @@
-#!/usr/bin/env ruby
+# !/usr/bin/env ruby
 
-require_relative
+require_relative "..//lib/board"
+require_relative "..//lib/player"
+
 
 # Elements needed: 
 # Player class to make two players
@@ -20,14 +22,14 @@ require_relative
 puts "enter name for player 1:"
 name1 = gets.chomp
 
-# puts "enter name for player 2: "
-# name2 = gets.chomp
+puts "enter name for player 2: "
+name2 = gets.chomp
 
 puts "enter shape for player 1: "
 shape1 = gets.chomp
 
-# puts "enter shape for player 2: "
-# shape2 = gets.chomp
+puts "enter shape for player 2: "
+shape2 = gets.chomp
 
 # Here player 1 is created with a given name and shape 
 # Here player 2 is created with a given name and shape 
@@ -52,11 +54,27 @@ shape1 = gets.chomp
 # Until a win, loss, or draw is reached, then the game ends and the program exits.
 
 player1 = Player.new(name1, shape1)
-puts "#{player1} will start first as player 1."
-
-
-player1 = Player.new(name1, shape1)
-puts "#{player1.name} will start first as player 1, taking the #{player1.shape} shape."
 
 player2 = Player.new(name2, shape2)
-puts "#{player2.name} will start second as player 2, taking the #{player2.shape} shape."
+
+board = Board.new(player1, player2)
+
+def display_board(board)
+  x = 0
+  while x < board.length
+    y = 0
+    while y < board[x].length
+      print "#{board[x][y]}" + " "
+      y += 1
+    end
+    x += 1
+    puts
+  end
+end
+
+display_board(board.matrix)
+
+puts board.add_position(0,0, "o")
+puts board.add_position(0,1, "x")
+puts board.add_position(0,2, "o")
+puts board.add_position(2,1, "x")
