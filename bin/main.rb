@@ -1,4 +1,5 @@
 # !/usr/bin/env ruby
+# frozen_string_literal: true
 
 require_relative "..//lib/board"
 require_relative "..//lib/player"
@@ -31,25 +32,35 @@ shape1 = gets.chomp
 puts "enter shape for player 2: "
 shape2 = gets.chomp
 
-# Here player 1 is created with a given name and shape 
-# Here player 2 is created with a given name and shape 
-# Here a board is created with the two players competing 
+# Here player 1 is created with a given name and shape
+# Here player 2 is created with a given name and shape
+# Here a board is created with the two players competing
+
+# while game_on, (loop for each move)
+# end
 
 # Here you constantly ask the users via a loop to enter their move, until someone wins/loses or if there's a draw
+# Upon input, the game will inform if either player has entered a valid input for their respective moves
+# Upon entering a move, the game immediately displays the board with each player's move reflected upon entry
+# The game informs if a draw has been reached once all moves have been exhausted
 
-# puts "Player 1, please enter your desired x-coordinate: "
-# x = gets.chomp
+# puts 'Player 1, please enter your desired x-coordinate: '
+# x = gets.chomp.to_i
 
-# puts "Player 1, please enter your desired y-coordinate: "
-# y = gets.chomp 
+# puts 'Player 1, please enter your desired y-coordinate: '
+# y = gets.chomp.to_i
 
 # puts "Player 2, please enter your desired x-coordinate: "
 # x = gets.chomp
 
 # puts "Player 2, please enter your desired y-coordinate: "
-# y = gets.chomp 
+# y = gets.chomp
 
-# After each player enters their coordinates, the values are then plotted on the board for each turn. 
+# if win || draw
+# game_on = false
+# end
+
+# After each player enters their coordinates, the values are then plotted on the board for each turn.
 
 # Until a win, loss, or draw is reached, then the game ends and the program exits.
 
