@@ -70,14 +70,22 @@ def display_board(board)
   end
 end
 
+i = 0
 
-display_board(board.matrix)
-
-
-while !board.draw || !board.win
+while i < 9 #!board.draw || !board.win
+  display_board(board.matrix)
   board.turn_counter 
+  puts 'Player 1, please enter your desired x-coordinate: '
+  x = gets.chomp.to_i
+  puts 'Player 1, please enter your desired y-coordinate: '
+  y = gets.chomp.to_i
+  puts 'Player 2, please enter your desired x-coordinate: '
+  a = gets.chomp.to_i
+  puts 'Player 2, please enter your desired y-coordinate: '
+  b = gets.chomp.to_i
   board.add_position(x, y, player1.shape)
-  board.add_position(x, y, player2.shape)
+  board.add_position(a, b, player2.shape)
+  i += 1
 end
 
 
