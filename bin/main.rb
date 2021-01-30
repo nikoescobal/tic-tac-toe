@@ -12,7 +12,7 @@ def display_board(matrix)
   while x < matrix.length
     y = 0
     while y < matrix[x].length
-      print (matrix[x][y]).to_s
+      print matrix[x][y].to_s
       y += 1
     end
     x += 1
