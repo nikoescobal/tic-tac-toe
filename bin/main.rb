@@ -59,23 +59,19 @@ while i < 9
   puts 'Player 1, please enter your desired y-coordinate: '
   gets.chomp.to_i
   puts 'Player 2, please enter your desired x-coordinate: '
-  gets.chomp
+  gets.chomp.to_i
   puts 'Player 2, please enter your desired y-coordinate: '
-  gets.chomp
+  gets.chomp.to_i
   display_board(matrix)
   i += 1
 end
-
-puts 'player 1 has won the game.'
 
 # Here you constantly ask the users via a loop to enter their move, until someone wins/loses or if there's a draw
 # Upon input, the game will inform if either player has entered a valid input for their respective moves
 # Upon entering a move, the game immediately displays the board with each player's move reflected upon entry
 # The game informs if a draw has been reached once all moves have been exhausted
 
-# if win || draw
-# game_on = false
-# end
+# game_on = false if win || draw
 
 # After each player enters their coordinates, the values are then plotted on the board for each turn.
 
