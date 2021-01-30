@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Board
-  attr_reader :matrix, :turn_player
+  attr_reader :matrix, :turn_player, :counter
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -9,7 +9,7 @@ class Board
     @matrix = [
       [nil, nil, nil],
       [nil, nil, nil],
-      [nil, nil, nil]
+      [nil, nil, nil],
     ]
   end
 
@@ -20,12 +20,12 @@ class Board
 
 
   def turn_counter()
-    if @counter.even?
+    @counter += 1
+    if @counter.odd?
       return @player1
     else 
       return @player2
     end
-    @counter += 1
   end 
 
   def get_coordinate(coordinate)
@@ -35,7 +35,7 @@ class Board
   end
 
   def draw
-    x = 0
+    x = 0 
     while x < matrix.length
       y = 0
       while y < matrix[x].length
@@ -50,13 +50,13 @@ class Board
   end
 
  def diagonals
-  x = 0
+  x = 0 
   y = 0
-  while y < @matrix.length
-    if @matrix[x][y] == @matrix[x + 1][y + 1] && @matrix[x][y] == @matrix[x + 2][y + 2]
+  while y < @matrix.length 
+    if @matrix[x][y] == @matrix[x + 1][y + 1] && @matrix[x][y] == @matrix[x + 2][y + 2] && matrix[x][y] != nil
       return true
     end
-    if @matrix[x][y + 2] == @matrix[x + 1][y + 1] && @matrix[x][y + 2] == @matrix[x + 2][y]
+    if @matrix[x][y + 2] == @matrix[x + 1][y + 1] && @matrix[x][y + 2] == @matrix[x + 2][y] && matrix[x][y] != nil
       return true
     end
    y += 1
@@ -68,7 +68,7 @@ class Board
     x = 0
     y = 0
     while y < @matrix.length
-      if @matrix[x][y] == @matrix[x + 1][y] && @matrix[x][y] == @matrix[x + 2][y]
+      if @matrix[x][y] == @matrix[x + 1][y] && @matrix[x][y] == @matrix[x + 2][y] && matrix[x][y] != nil
         return true
       end
       y += 1      
@@ -80,7 +80,7 @@ class Board
   while x < @matrix.length
     y = 0
     while y < @matrix[x].length
-        if @matrix[x][y] == @matrix[x][y + 1] && @matrix[x][y] == @matrix[x][y + 2]
+        if @matrix[x][y] == @matrix[x][y + 1] && @matrix[x][y] == @matrix[x][y + 2] && matrix[x][y] != nil
           return true
         end
         y += 1
@@ -96,9 +96,6 @@ def win
     return false
   end
 end
-end
-
-
 
   private
   def input_valid?(coordinate)
@@ -108,5 +105,4 @@ end
       return true
     end
   end
-
-  
+end

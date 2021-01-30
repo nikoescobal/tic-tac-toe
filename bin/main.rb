@@ -22,14 +22,24 @@ require_relative '..//lib/player'
 puts 'enter name for player 1:'
 name1 = gets.chomp
 
-puts 'enter name for player 2: '
+puts 'enter name for player 2:'
 name2 = gets.chomp
+
+while name1 == name2
+  puts "Player 2, please enter a different name to avoid confusion. Enter new name: "
+  name2 = gets.chomp
+end
 
 puts 'enter shape for player 1: '
 shape1 = gets.chomp
 
 puts 'enter shape for player 2: '
 shape2 = gets.chomp
+
+while shape1 == shape2
+  puts "Player 2, please enter a different shape to avoid confusion. Enter new shape: "
+  shape2 = gets.chomp
+end
 
 # Here player 1 is created with a given name and shape
 # Here player 2 is created with a given name and shape
@@ -44,19 +54,6 @@ puts "#{name2} starts second, with #{shape2}."
 board = Board.new(player1, player2)
 puts "The game will now commence between #{player1.name}, and #{player2.name}"
 
-puts 'Player 1, please enter your desired x-coordinate: '
-x = gets.chomp.to_i
-
-puts 'Player 1, please enter your desired y-coordinate: '
-y = gets.chomp.to_i
-
-puts 'Player 2, please enter your desired x-coordinate: '
-x = gets.chomp.to_i
-
-puts 'Player 2, please enter your desired y-coordinate: '
-y = gets.chomp.to_i
-
-
 def display_board(board)
   x = 0
   while x < board.length
@@ -70,24 +67,23 @@ def display_board(board)
   end
 end
 
-i = 0
+player_turn = nil
 
-while i < 9 #!board.draw || !board.win
+puts board.win
+puts board.draw
+
+while !board.win || !board.draw
   display_board(board.matrix)
-  board.turn_counter 
-  puts 'Player 1, please enter your desired x-coordinate: '
+  player_turn = board.turn_counter 
+  puts "#{player_turn.name}, please enter your desired x-coordinate: "
   x = gets.chomp.to_i
-  puts 'Player 1, please enter your desired y-coordinate: '
+  puts "#{player_turn.name}, please enter your desired y-coordinate: "
   y = gets.chomp.to_i
-  puts 'Player 2, please enter your desired x-coordinate: '
-  a = gets.chomp.to_i
-  puts 'Player 2, please enter your desired y-coordinate: '
-  b = gets.chomp.to_i
-  board.add_position(x, y, player1.shape)
-  board.add_position(a, b, player2.shape)
-  i += 1
+  board.add_position(x, y, player_turn.shape)
 end
 
+puts board.win
+puts board.draw
 
 # Here you constantly ask the users via a loop to enter their move, until someone wins/loses or if there's a draw
 # Upon input, the game will inform if either player has entered a valid input for their respective moves
