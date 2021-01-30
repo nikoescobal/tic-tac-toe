@@ -58,15 +58,21 @@ while i < 9
   gets.chomp.to_i
   puts 'Player 1, please enter your desired y-coordinate: '
   gets.chomp.to_i
+  # if selected move is invalid, notify player to enter a valid move. 
+  display_board(matrix)
+
   puts 'Player 2, please enter your desired x-coordinate: '
-  gets.chomp
+  gets.chomp.to_i
   puts 'Player 2, please enter your desired y-coordinate: '
-  gets.chomp
+  gets.chomp.to_i
+  # if selected move is invalid, notify player to enter a valid move. 
+
   display_board(matrix)
   i += 1
 end
 
-puts 'player 1 has won the game.'
+# if it's a draw, notify the players. 
+# if it's a win, declare which player won the game.
 
 # Here you constantly ask the users via a loop to enter their move, until someone wins/loses or if there's a draw
 # Upon input, the game will inform if either player has entered a valid input for their respective moves
