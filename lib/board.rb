@@ -36,10 +36,10 @@ class Board
 
   def draw
     x = 0 
-    while x < matrix.length
+    while x < @matrix.length
       y = 0
-      while y < matrix[x].length
-        if matrix[x][y] == nil
+      while y < @matrix[x].length
+        if @matrix[x][y] == nil
           return false
         end
         y += 1
@@ -49,14 +49,14 @@ class Board
     return true
   end
 
- def diagonals
+ def diagonals(shape)
   x = 0 
   y = 0
   while y < @matrix.length
-    if @matrix[x][y] == @matrix[x + 1][y + 1] && @matrix[x][y] == @matrix[x + 2][y + 2] 
+    if @matrix[x][y] == shape && @matrix[x + 1][y + 1] == shape && @matrix[x + 2][y + 2] == shape
       return true
     end
-    if @matrix[x][y + 2] == @matrix[x + 1][y + 1] && @matrix[x][y + 2] == @matrix[x + 2][y]
+    if @matrix[x][y + 2] == shape && @matrix[x + 1][y + 1] == shape && @matrix[x + 2][y] == shape
       return true
     end
    y += 1
@@ -64,23 +64,23 @@ class Board
   return false
   end
 
-  def vertical
+  def vertical(shape)
     x = 0
     y = 0
     while y < @matrix.length
-      if @matrix[x][y] == @matrix[x + 1][y] && @matrix[x][y] == @matrix[x + 2][y]
+      if @matrix[x][y] == shape && @matrix[x + 1][y] == shape && @matrix[x + 2][y] == shape
         return true
       end
-      y += 1      
+      y += 1
     end
   end
 
-  def horizontal
+  def horizontal(shape)
   x = 0
   while x < @matrix.length 
     y = 0
     while y < @matrix[x].length
-        if @matrix[x][y] == @matrix[x][y + 1] && @matrix[x][y] == @matrix[x][y + 2]
+        if @matrix[x][y] == shape && @matrix[x][y + 1] == shape && @matrix[x][y + 2] == shape
           return true
         end
         y += 1
@@ -89,8 +89,8 @@ class Board
   end
 end
 
-def win
-  if horizontal || vertical || diagonals
+def win(shape)
+  if horizontal(shape) || vertical(shape) || diagonals(shape)
     return true
   else
     return false

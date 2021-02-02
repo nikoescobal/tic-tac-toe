@@ -89,27 +89,43 @@ end
 
 player_turn = nil
 
-puts board.win
-puts board.draw
+# puts board.win
+# puts board.draw
+has_won = false
 
-while !board.win || !board.draw
-  display_board(board.matrix)
+# i = 0
+
+while !board.draw || !has_won
   player_turn = board.turn_counter 
   puts "#{player_turn.name}, please enter your desired x-coordinate: "
   x = gets.chomp.to_i
   puts "#{player_turn.name}, please enter your desired y-coordinate: "
   y = gets.chomp.to_i
+
   board.add_position(x, y, player_turn.shape)
-    if board.win
-      puts "#{player_turn.name} has won"
-    end
-    if  board.draw
-      puts "#{player_turn.name} has drawn."
-    end
+  has_won = board.win(player_turn.shape)
+
+  display_board(board.matrix)
+  if has_won
+    puts "#{player_turn.name} has won."
+  end
+  if board.draw
+    puts "Neither player has won. The game is a draw."
+  end
 end
 
-puts board.win
+puts has_won
 puts board.draw
+
+# if board.win()
+#   puts "#{player_turn.name} has won"
+# end
+# if  board.draw
+#   puts "#{player_turn.name} has drawn."
+# end
+
+# puts board.win
+# puts board.draw
 
 # Here you constantly ask the users via a loop to enter their move, until someone wins/loses or if there's a draw
 # Upon input, the game will inform if either player has entered a valid input for their respective moves
