@@ -22,10 +22,20 @@ require_relative '..//lib/player'
 puts 'enter name for player 1:'
 name1 = gets.chomp
 
+while name1 == "" 
+  puts "Player 1, please don't enter a blank value. Enter a new name: "
+  name1 = gets.chomp
+end
+
 puts 'enter name for player 2:'
 name2 = gets.chomp
 
-while name1 == name2
+while name2 == "" 
+  puts "Player 2, please don't enter a blank value. Enter a new name: "
+  name2 = gets.chomp
+end
+
+while name1.downcase == name2.downcase
   puts "Player 2, please enter a different name to avoid confusion. Enter new name: "
   name2 = gets.chomp
 end
@@ -36,7 +46,17 @@ shape1 = gets.chomp
 puts 'enter shape for player 2: '
 shape2 = gets.chomp
 
-while shape1 == shape2
+while shape1 == "" 
+  puts "Player 1, please don't enter a blank value. Enter a new shape: "
+  shape1 = gets.chomp
+end
+
+while shape2 == "" 
+  puts "Player 2, please don't enter a blank value. Enter a new shape: "
+  shape2 = gets.chomp
+end
+
+while shape1.downcase == shape2.downcase
   puts "Player 2, please enter a different shape to avoid confusion. Enter new shape: "
   shape2 = gets.chomp
 end
@@ -80,6 +100,12 @@ while !board.win || !board.draw
   puts "#{player_turn.name}, please enter your desired y-coordinate: "
   y = gets.chomp.to_i
   board.add_position(x, y, player_turn.shape)
+    if board.win
+      puts "#{player_turn.name} has won"
+    end
+    if  board.draw
+      puts "#{player_turn.name} has drawn."
+    end
 end
 
 puts board.win

@@ -52,11 +52,11 @@ class Board
  def diagonals
   x = 0 
   y = 0
-  while y < @matrix.length 
-    if @matrix[x][y] == @matrix[x + 1][y + 1] && @matrix[x][y] == @matrix[x + 2][y + 2] && matrix[x][y] != nil
+  while y < @matrix.length
+    if @matrix[x][y] == @matrix[x + 1][y + 1] && @matrix[x][y] == @matrix[x + 2][y + 2] 
       return true
     end
-    if @matrix[x][y + 2] == @matrix[x + 1][y + 1] && @matrix[x][y + 2] == @matrix[x + 2][y] && matrix[x][y] != nil
+    if @matrix[x][y + 2] == @matrix[x + 1][y + 1] && @matrix[x][y + 2] == @matrix[x + 2][y]
       return true
     end
    y += 1
@@ -68,7 +68,7 @@ class Board
     x = 0
     y = 0
     while y < @matrix.length
-      if @matrix[x][y] == @matrix[x + 1][y] && @matrix[x][y] == @matrix[x + 2][y] && matrix[x][y] != nil
+      if @matrix[x][y] == @matrix[x + 1][y] && @matrix[x][y] == @matrix[x + 2][y]
         return true
       end
       y += 1      
@@ -77,10 +77,10 @@ class Board
 
   def horizontal
   x = 0
-  while x < @matrix.length
+  while x < @matrix.length 
     y = 0
     while y < @matrix[x].length
-        if @matrix[x][y] == @matrix[x][y + 1] && @matrix[x][y] == @matrix[x][y + 2] && matrix[x][y] != nil
+        if @matrix[x][y] == @matrix[x][y + 1] && @matrix[x][y] == @matrix[x][y + 2]
           return true
         end
         y += 1
