@@ -43,13 +43,14 @@ end
 puts 'enter shape for player 1: '
 shape1 = gets.chomp
 
-puts 'enter shape for player 2: '
-shape2 = gets.chomp
 
 while shape1 == "" 
   puts "Player 1, please don't enter a blank value. Enter a new shape: "
   shape1 = gets.chomp
 end
+
+puts 'enter shape for player 2: '
+shape2 = gets.chomp
 
 while shape2 == "" 
   puts "Player 2, please don't enter a blank value. Enter a new shape: "
@@ -74,16 +75,23 @@ puts "#{name2} starts second, with #{shape2}."
 board = Board.new(player1, player2)
 puts "The game will now commence between #{player1.name}, and #{player2.name}"
 
-def display_board(board)
+def display_board(matrix)
   x = 0
-  while x < board.length
+  while x < matrix.length
     y = 0
-    while y < board[x].length
-      print (board[x][y]).to_s + ' '
+    while y < matrix[x].length
+      if y < matrix[x].length - 1
+        print matrix[x][y].to_s + " | "
+      else
+        print matrix[x][y].to_s + " "
+      end
       y += 1
     end
-    x += 1
     puts
+    if x < matrix.length - 1
+      puts "--+---+--"
+    end
+    x += 1
   end
 end
 
@@ -93,25 +101,23 @@ player_turn = nil
 # puts board.draw
 has_won = false
 
-# i = 0
+display_board(board.matrix)
 
-while !board.draw || !has_won
+while !board.draw && !has_won
   player_turn = board.turn_counter 
-  puts "#{player_turn.name}, please enter your desired x-coordinate: "
-  x = gets.chomp.to_i
-  puts "#{player_turn.name}, please enter your desired y-coordinate: "
-  y = gets.chomp.to_i
-
+  puts "#{player_turn.name}, please enter your desired x-coordinate (pick from 1 to 3): "
+  x = gets.chomp.to_i - 1
+  puts "#{player_turn.name}, please enter your desired y-coordinate (pick from 1 to 3): "
+  y = gets.chomp.to_i - 1
   board.add_position(x, y, player_turn.shape)
   has_won = board.win(player_turn.shape)
-
   display_board(board.matrix)
-  if has_won
-    puts "#{player_turn.name} has won."
-  end
-  if board.draw
-    puts "Neither player has won. The game is a draw."
-  end
+end
+
+if has_won
+  puts "#{player_turn.name} has won."
+elsif board.draw
+  puts "Neither player has won. The game is a draw."
 end
 
 puts has_won

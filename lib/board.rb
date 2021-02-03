@@ -7,9 +7,9 @@ class Board
     @player2 = player2
     @counter = 0 
     @matrix = [
-      [nil, nil, nil],
-      [nil, nil, nil],
-      [nil, nil, nil],
+      [" ", " ", " "],
+      [" ", " ", " "],
+      [" ", " ", " "]
     ]
   end
 
@@ -39,7 +39,7 @@ class Board
     while x < @matrix.length
       y = 0
       while y < @matrix[x].length
-        if @matrix[x][y] == nil
+        if @matrix[x][y] == " "
           return false
         end
         y += 1
