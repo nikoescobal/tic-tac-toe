@@ -49,8 +49,8 @@ class Board
     end
   end
 
-  def input_valid?(x, y)
-    @matrix[x][y] == ' '
+  def input_valid?(row, column)
+    @matrix[row][column] == ' '
   end
 
   private

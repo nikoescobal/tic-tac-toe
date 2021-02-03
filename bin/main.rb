@@ -40,7 +40,7 @@ while name1.downcase == name2.downcase
   name2 = gets.chomp
 end
 
-shape1 = "\u2717"
+shape1 = "\u2718"
 shape2 = "\u25EF"
 
 while shape1.downcase == shape2.downcase
