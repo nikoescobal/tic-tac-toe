@@ -14,6 +14,12 @@ def ask_name(player_num)
   name
 end
 
+matrix = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0]
+]
+
 def display_board(matrix)
   x = 0
   while x < matrix.length
@@ -89,4 +95,11 @@ if has_won
   puts "#{player_turn.name} has won."
 elsif board.draw
   puts 'Neither player has won. The game is a draw.'
+end
+      print matrix[x][y].to_s
+      y += 1
+    end
+    x += 1
+    puts
+  end
 end
