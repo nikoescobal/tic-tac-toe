@@ -5,11 +5,11 @@ class Board
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @counter = 0 
+    @counter = 0
     @matrix = [
-      [" ", " ", " "],
-      [" ", " ", " "],
-      [" ", " ", " "]
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
     ]
   end
 
@@ -18,91 +18,75 @@ class Board
   end
   # [5, 2, 3, 1, 0]
 
-
-  def turn_counter()
+  def turn_counter
     @counter += 1
-    if @counter.odd?
-      return @player1
-    else 
-      return @player2
-    end
-  end 
-
-  def get_coordinate(coordinate)
-    if input_valid?(coordinate)
-      return coordinate
+    if @counter.even?
+      @player1
+    else
+      @player2
     end
   end
 
   def draw
-    x = 0 
+    x = 0
     while x < @matrix.length
       y = 0
       while y < @matrix[x].length
-        if @matrix[x][y] == " "
-          return false
-        end
+        return false if @matrix[x][y] == ' '
+
         y += 1
       end
       x += 1
     end
-    return true
+    true
   end
 
- def diagonals(shape)
-  x = 0 
-  y = 0
-  while y < @matrix.length
-    if @matrix[x][y] == shape && @matrix[x + 1][y + 1] == shape && @matrix[x + 2][y + 2] == shape
-      return true
+  def win(shape)
+    if horizontal(shape) || vertical(shape) || diagonals(shape)
+      true
+    else
+      false
     end
-    if @matrix[x][y + 2] == shape && @matrix[x + 1][y + 1] == shape && @matrix[x + 2][y] == shape
-      return true
-    end
-   y += 1
   end
-  return false
+
+  def input_valid?(x, y)
+    @matrix[x][y] == ' '
+  end
+
+  private
+
+  def diagonals(shape)
+    x = 0
+    y = 0
+    while y < @matrix.length
+      return true if @matrix[x][y] == shape && @matrix[x + 1][y + 1] == shape && @matrix[x + 2][y + 2] == shape
+      return true if @matrix[x][y + 2] == shape && @matrix[x + 1][y + 1] == shape && @matrix[x + 2][y] == shape
+
+      y += 1
+    end
+    false
   end
 
   def vertical(shape)
     x = 0
     y = 0
     while y < @matrix.length
-      if @matrix[x][y] == shape && @matrix[x + 1][y] == shape && @matrix[x + 2][y] == shape
-        return true
-      end
+      return true if @matrix[x][y] == shape && @matrix[x + 1][y] == shape && @matrix[x + 2][y] == shape
+
       y += 1
     end
   end
 
   def horizontal(shape)
-  x = 0
-  while x < @matrix.length 
-    y = 0
-    while y < @matrix[x].length
-        if @matrix[x][y] == shape && @matrix[x][y + 1] == shape && @matrix[x][y + 2] == shape
-          return true
-        end
+    x = 0
+    while x < @matrix.length
+      y = 0
+      while y < @matrix[x].length
+        return true if @matrix[x][y] == shape && @matrix[x][y + 1] == shape && @matrix[x][y + 2] == shape
+
         y += 1
-    end 
-    x += 1
-  end
-end
-
-def win(shape)
-  if horizontal(shape) || vertical(shape) || diagonals(shape)
-    return true
-  else
-    return false
-  end
-end
-
-  private
-  def input_valid?(coordinate)
-    if coordinate < 0 && coordinate > 2 
-      return false
-    else 
-      return true
+      end
+      x += 1
     end
   end
 end
