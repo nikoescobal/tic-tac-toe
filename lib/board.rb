@@ -2,6 +2,7 @@
 
 class Board
   attr_reader :matrix, :turn_player, :counter
+
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2

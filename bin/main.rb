@@ -20,9 +20,9 @@ def display_board(matrix)
     y = 0
     while y < matrix[x].length
       if y < matrix[x].length - 1
-        print matrix[x][y].to_s + ' | '
+        print "#{matrix[x][y]} | "
       else
-        print matrix[x][y].to_s + ' '
+        print "#{matrix[x][y]}   "
       end
       y += 1
     end
