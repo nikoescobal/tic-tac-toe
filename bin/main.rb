@@ -32,6 +32,16 @@ def display_board(matrix)
   end
 end
 
+def ask_coordinate(player, coordinate)
+  puts "#{player.name}, please enter desired #{coordinate}-coordinate (pick from 1 to 3): "
+  coordinate = gets.chomp.to_i - 1
+  while coordinate.negative? || coordinate > 2
+    puts "#{player.name}, please only enter a value from 1 to 3: "
+    coordinate = gets.chomp.to_i - 1
+  end
+  coordinate
+end
+
 name1 = ask_name(1)
 name2 = ask_name(2)
 
@@ -61,16 +71,6 @@ player_turn = player1
 has_won = false
 
 display_board(board.matrix)
-
-def ask_coordinate(player, coordinate)
-  puts "#{player.name}, please enter desired #{coordinate}-coordinate (pick from 1 to 3): "
-  coordinate = gets.chomp.to_i - 1
-  while coordinate.negative? || coordinate > 2
-    puts "#{player.name}, please only enter a value from 1 to 3: "
-    coordinate = gets.chomp.to_i - 1
-  end
-  coordinate
-end
 
 while !board.draw && !has_won
   x = ask_coordinate(player_turn, 'x')
